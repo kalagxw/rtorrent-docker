@@ -1,0 +1,21 @@
+directory = /pt/Downloads
+session = /pt/rtorrent/.sessions
+
+schedule = watch_dir,5,5,"load.start=/pt/rtorrent/torrents/*.torrent, d.directory.set=/pt/rtorrent/incoming"
+schedule = untied_directory,5,5,stop_untied=
+schedule = untied_directory,5,5,close_untied=
+schedule = untied_directory,5,5,remove_untied=
+schedule = tied_directory,5,5,start_tied=
+schedule = low_diskspace,10,30,close_low_diskspace=100M
+
+upload_rate = 0
+download_rate = 0
+port_range = 30111
+port_random = no
+encryption = allow_incoming,try_outgoing,enable_retry
+dht = disable
+check_hash = no
+
+encoding_list = UTF-8
+scgi_port = 127.0.0.1:5000
+ip = 

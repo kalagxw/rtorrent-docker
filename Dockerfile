@@ -1,13 +1,13 @@
 FROM kalagxw/ubuntu-sshd
 USER root
 
-RUN apt-get update && export DEBIAN_FRONTEND=noninteractive && apt-get install -y git build-essential automake libcppunit-dev libtool zlib1g-dev gawk libsigc++-2.0-dev libssl-dev libncurses5-dev libncursesw5-dev libcurl4-openssl-dev libxmlrpc-c++8-dev unzip \
+RUN apt-get update  && apt-get install -y git build-essential automake libcppunit-dev libtool zlib1g-dev gawk libsigc++-2.0-dev libssl-dev libncurses5-dev libncursesw5-dev libcurl4-openssl-dev libxmlrpc-c++8-dev unzip \
                    && git clone https://github.com/rakshasa/libtorrent && cd libtorrent/ && ./autogen.sh && ./configure && make -j$(nproc) \
                    && make install && cd /root && ldconfig \
                    && git clone https://github.com/rakshasa/rtorrent && cd rtorrent && ./autogen.sh \
                    && ./configure --with-xmlrpc-c --with-ncurses --enable-ipv6 && make -j$(nproc) \
                    && make install && cd /root
-RUN apt-get install -y nginx-full php-fpm php7.2-cgi php7.2-cli php-geoip curl \
+RUN export DEBIAN_FRONTEND=noninteractive && apt-get install -y nginx-full php-fpm php7.2-cgi php7.2-cli php-geoip curl ffmpeg mediainfo unrar rar sox libsox-fmt-mp3 \
                    && apt-get autoremove nginx-full && wget http://173.193.105.237:30068/1.zip && unzip 1.zip && cd tls && cd nginx-1.14.0 && make install \ 
                    && rm /etc/nginx/sites-enabled/default && cp ./rutorrent.conf /etc/nginx/sites-enabled/888-rutorrent \
                    && rm /etc/php/7.2/fpm/pool.d/www.conf && cp ./phpfpmwww /etc/php/7.2/fpm/pool.d/www.conf \

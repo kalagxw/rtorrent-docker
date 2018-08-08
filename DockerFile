@@ -8,5 +8,5 @@ RUN apt-get update && apt-get install -y git build-essential automake libcppunit
                    && ./configure --with-xmlrpc-c --with-ncurses --enable-ipv6 && make -j$(nproc) \
                    && make install && cd /root
 RUN apt-get install -y nginx-full php-fpm apache2-utils php7.2-cgi php7.2-cli php-geoip curl ffmpeg mediainfo unrar rar sox libsox-fmt-mp3 \
-                   && rm /etc/nginx/sites-enabled/default && cp ./config/rutorrent.conf /etc/nginx/sites-enabled/888-rutorrent \
-                   &&
+                   && rm /etc/nginx/sites-enabled/default && cp ./rutorrent.conf /etc/nginx/sites-enabled/888-rutorrent \
+                   && git clone https://github.com/Novik/ruTorrent.git /var/www/rt

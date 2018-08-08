@@ -16,9 +16,9 @@ RUN apt-get install -y nginx-full php-fpm php7.2-cgi php7.2-cli php-geoip curl f
                    && cp ./pwd /etc/nginx/htpasswd && chown www-data -R /var/www/rt/share \ 
                    && cp ./rtorrentrc /root/.rtorrent.rc \
                    && mkdir -p /pt/Downloads && mkdir -p /pt/rtorrent/.sessions && mkdir -p /pt/rtorrent/torrents/ && mkdir -p /pt/rtorrent/incoming \
-                   && chown -R www-data /pt
-RUN sed -i "s/pathToExternals['sox'] = ''/pathToExternals['sox'] = '/usr/bin/sox'/" /var/www/rt/plugins/spectrogram/conf.php
-RUN sed -i "s/"curl"  => ''/"curl"  => '/usr/bin/curl'/" /var/www/rt/conf/config.php
+                   && chown -R www-data /pt \
+                   && rm /var/www/rt/plugins/spectrogram/conf.php && cp ./1.php /var/www/rt/plugins/spectrogram/conf.php \
+                   && rm /var/www/rt/conf/config.php && cp ./2.php /var/www/rt/conf/config.php
 EXPOSE 80
 
                    

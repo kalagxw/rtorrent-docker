@@ -23,7 +23,7 @@ RUN cp ./rutorrent.conf /etc/nginx/sites-enabled/888-rutorrent \
 RUN rm /etc/php/7.2/fpm/php.ini && cp ./phpini /etc/php/7.2/fpm/php.ini \
                    && git clone https://github.com/Novik/ruTorrent.git /var/www/rt \
                    && cp ./pwd /etc/nginx/htpasswd && chown www-data -R /var/www/rt/share
-RUN cp ./rtorrentrc /root/.rtorrent.rc
+RUN cp ./rtorrentrc /root/.rtorrent.rc \
                    && mkdir -p /pt/Downloads/ && mkdir -p /pt/rtorrent/.sessions/ && mkdir -p /pt/rtorrent/torrents/ && mkdir -p /pt/rtorrent/incoming/ \
                    && chown -R www-data /pt
 RUN rm /var/www/rt/plugins/spectrogram/conf.php && cp ./1.php /var/www/rt/plugins/spectrogram/conf.php \

@@ -24,7 +24,7 @@ RUN rm /etc/nginx/sites-enabled/default && cp ./rutorrent.conf /etc/nginx/sites-
                    && git clone https://github.com/Novik/ruTorrent.git /var/www/rt \
                    && cp ./pwd /etc/nginx/htpasswd && chown www-data -R /var/www/rt/share \ 
                    && cp ./rtorrentrc /root/.rtorrent.rc \
-                   && mkdir -p /pt/Downloads && mkdir -p /pt/rtorrent/.sessions && mkdir -p /pt/rtorrent/torrents/ && mkdir -p /pt/rtorrent/incoming \
+                   && mkdir -p /pt/Downloads/ && mkdir -p /pt/rtorrent/.sessions/ && mkdir -p /pt/rtorrent/torrents/ && mkdir -p /pt/rtorrent/incoming/ \
                    && chown -R www-data /pt \
                    && rm /var/www/rt/plugins/spectrogram/conf.php && cp ./1.php /var/www/rt/plugins/spectrogram/conf.php \
                    && rm /var/www/rt/conf/config.php && cp ./2.php /var/www/rt/conf/config.php

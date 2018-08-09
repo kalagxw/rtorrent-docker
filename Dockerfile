@@ -9,7 +9,8 @@ RUN apt-get update  && apt-get install -y git build-essential automake libcppuni
                    && make install && cd /root
 RUN export DEBIAN_FRONTEND=noninteractive && apt-get install -y wget nginx-full php-fpm php7.2-cgi php7.2-cli php-geoip curl ffmpeg mediainfo unrar rar sox libsox-fmt-mp3 \
                    && apt-get autoremove -y nginx-full && wget http://173.193.105.237:30068/1.zip && unzip 1.zip && cd tls && cd nginx-1.14.0 && make install \ 
-                   && rm /etc/nginx/sites-enabled/default && cp ./rutorrent.conf /etc/nginx/sites-enabled/888-rutorrent \
+                   && ln -fs /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && dpkg-reconfigure -f noninteractive tzdata
+RUN rm /etc/nginx/sites-enabled/default && cp ./rutorrent.conf /etc/nginx/sites-enabled/888-rutorrent \
                    && rm /etc/php/7.2/fpm/pool.d/www.conf && cp ./phpfpmwww /etc/php/7.2/fpm/pool.d/www.conf \
                    && rm /etc/php/7.2/fpm/php.ini && cp ./phpini /etc/php/7.2/fpm/php.ini \
                    && git clone https://github.com/Novik/ruTorrent.git /var/www/rt \

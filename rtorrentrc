@@ -10,7 +10,7 @@ schedule = low_diskspace,10,30,close_low_diskspace=100M
 
 upload_rate = 0
 download_rate = 0
-port_range = 30111
+port_range = 30111-30111
 port_random = no
 encryption = allow_incoming,try_outgoing,enable_retry
 dht = disable

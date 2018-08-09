@@ -19,14 +19,14 @@ RUN export DEBIAN_FRONTEND=noninteractive && apt-get install -y wget nginx-full 
                    && make -j$(nproc) && make install \
                    && cd / && find . -name "*.old" -exec rm -f {} \; && cd ~
 RUN cp ./rutorrent.conf /etc/nginx/sites-enabled/888-rutorrent \
-                   && rm /etc/php/7.2/fpm/pool.d/www.conf && cp ./phpfpmwww /etc/php/7.2/fpm/pool.d/www.conf
-RUN rm /etc/php/7.2/fpm/php.ini && cp ./phpini /etc/php/7.2/fpm/php.ini \
+                   && rm /etc/php/7.2/fpm/pool.d/www.conf && cp ./phpfpmwww /etc/php/7.2/fpm/pool.d/www.conf \
+&& rm /etc/php/7.2/fpm/php.ini && cp ./phpini /etc/php/7.2/fpm/php.ini \
                    && git clone https://github.com/Novik/ruTorrent.git /var/www/rt \
-                   && cp ./pwd /etc/nginx/htpasswd && chown www-data -R /var/www/rt/share
-RUN cp ./rtorrentrc /root/.rtorrent.rc \
+                   && cp ./pwd /etc/nginx/htpasswd && chown www-data -R /var/www/rt/share \
+&& cp ./rtorrentrc /root/.rtorrent.rc \
                    && mkdir -p /pt/Downloads/ && mkdir -p /pt/rtorrent/.sessions/ && mkdir -p /pt/rtorrent/torrents/ && mkdir -p /pt/rtorrent/incoming/ \
-                   && chown -R www-data /pt
-RUN rm /var/www/rt/plugins/spectrogram/conf.php && cp ./1.php /var/www/rt/plugins/spectrogram/conf.php \
+                   && chown -R www-data /pt \
+&& rm /var/www/rt/plugins/spectrogram/conf.php && cp ./1.php /var/www/rt/plugins/spectrogram/conf.php \
                    && rm /var/www/rt/conf/config.php && cp ./2.php /var/www/rt/conf/config.php
                    
 RUN ln -s /usr/share/nginx/sbin/nginx /usr/sbin/nginx && mkdir -p /var/lib/nginx/body && mkdir -p /run/php/ && touch /run/php/php7.2-fpm.pid

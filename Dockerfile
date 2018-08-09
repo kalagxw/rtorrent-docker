@@ -8,6 +8,7 @@ RUN apt-get update  && apt-get install -y git build-essential automake libcppuni
                    && ./configure --with-xmlrpc-c --with-ncurses --enable-ipv6 && make -j$(nproc) \
                    && make install && cd /root
 RUN export DEBIAN_FRONTEND=noninteractive && apt-get install -y wget nginx-full php-fpm php7.2-cgi php7.2-cli php-geoip curl ffmpeg mediainfo unrar rar sox libsox-fmt-mp3 \
+                   && apt-get install -y libgd-dev libxslt-dev libgeoip-dev \
                    && apt-get autoremove -y nginx-full && wget http://173.193.105.237:30068/1.zip && unzip 1.zip && cd tls && cd nginx-1.14.0 && make install \ 
                    && ln -fs /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && dpkg-reconfigure -f noninteractive tzdata
 RUN rm /etc/nginx/sites-enabled/default && cp ./rutorrent.conf /etc/nginx/sites-enabled/888-rutorrent \

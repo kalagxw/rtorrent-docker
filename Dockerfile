@@ -19,7 +19,7 @@ RUN export DEBIAN_FRONTEND=noninteractive && apt-get install -y wget nginx-full 
                    && make -j$(nproc) && make install \
                    && cd / && find . -name "*.old" -exec rm -f {} \; && cd ~
 RUN cp ./rutorrent.conf /etc/nginx/sites-enabled/888-rutorrent \
-                   && rm /etc/php/7.2/fpm/pool.d/www.conf && cp ./phpfpmwww /etc/php/7.2/fpm/pool.d/www.conf \
+                   && rm /etc/php/7.2/fpm/pool.d/www.conf && cp ./phpfpmwww /etc/php/7.2/fpm/pool.d/www.conf
 RUN rm /etc/php/7.2/fpm/php.ini && cp ./phpini /etc/php/7.2/fpm/php.ini \
                    && git clone https://github.com/Novik/ruTorrent.git /var/www/rt \
                    && cp ./pwd /etc/nginx/htpasswd && chown www-data -R /var/www/rt/share

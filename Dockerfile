@@ -6,8 +6,8 @@ RUN apt-get update  && apt-get install -y git build-essential automake libcppuni
                    && make install && cd /root && ldconfig \
                    && git clone https://github.com/rakshasa/rtorrent && cd rtorrent && ./autogen.sh \
                    && ./configure --with-xmlrpc-c --with-ncurses --enable-ipv6 && make -j$(nproc) \
-                   && make install
-RUN export DEBIAN_FRONTEND=noninteractive && apt-get install -y wget nginx-full php-fpm php7.2-cgi php7.2-cli php-geoip curl ffmpeg mediainfo unrar rar sox libsox-fmt-mp3 \
+                   && make install && cd /root \
+&& export DEBIAN_FRONTEND=noninteractive && apt-get install -y wget nginx-full php-fpm php7.2-cgi php7.2-cli php-geoip curl ffmpeg mediainfo unrar rar sox libsox-fmt-mp3 \
                    && ln -fs /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && dpkg-reconfigure -f noninteractive tzdata \
                    && apt-get install -y libgd-dev libxslt-dev libgeoip-dev \
                    && apt-get autoremove -y nginx-full \

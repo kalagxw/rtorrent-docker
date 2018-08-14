@@ -15,7 +15,7 @@ RUN export DEBIAN_FRONTEND=noninteractive && apt-get install -y wget nginx-full 
                    && wget -O nginx-ct.zip -c https://github.com/grahamedgecombe/nginx-ct/archive/v1.3.2.zip && unzip nginx-ct.zip \
                    && git clone https://github.com/google/ngx_brotli.git && cd ngx_brotli && git submodule update --init && cd ../ \
                    && git clone https://github.com/openssl/openssl.git \
-                   && cd openssl && patch -p1 < ../openssl-patch/openssl-equal-pre9_ciphers.patch \
+                   && cd openssl && patch -p1 < ../openssl-patch/openssl-equal-pre9_ciphers.patch && cd .. \
                    && wget -c https://nginx.org/download/nginx-1.14.0.tar.gz && tar zxf nginx-1.14.0.tar.gz && cd nginx-1.14.0/ \
                    && patch -p1 < ../nginx-patch/nginx.patch \
                    && patch -p1 < ../nginx-patch/fix_nginx_hpack_push_error.patch \

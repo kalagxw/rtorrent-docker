@@ -1,9 +1,9 @@
 FROM kalagxw/ubuntu-sshd
 
 RUN apt-get update  && apt-get install -y git build-essential automake libcppunit-dev libtool zlib1g-dev gawk libsigc++-2.0-dev libssl-dev libncurses5-dev libncursesw5-dev libcurl4-openssl-dev libxmlrpc-c++8-dev unzip \
-                   && git clone https://github.com/rakshasa/libtorrent && cd libtorrent/ && ./autogen.sh && ./configure && make -j$(nproc) \
+                   && wget https://github.com/rakshasa/rtorrent/releases/download/v0.9.7/libtorrent-0.13.7.tar.gz && tar zxf libtorrent-0.13.7.tar.gz && cd libtorrent-0.13.7/ && ./autogen.sh && ./configure && make -j$(nproc) \
                    && make install && cd /root && ldconfig \
-                   && git clone https://github.com/rakshasa/rtorrent && cd rtorrent && ./autogen.sh \
+                   && wget https://github.com/rakshasa/rtorrent/releases/download/v0.9.7/rtorrent-0.9.7.tar.gz && tar zxf rtorrent-0.9.7.tar.gz && cd rtorrent-0.9.7 && ./autogen.sh \
                    && ./configure --with-xmlrpc-c --with-ncurses --enable-ipv6 && make -j$(nproc) \
                    && make install && cd /root
 RUN export DEBIAN_FRONTEND=noninteractive && apt-get install -y wget nginx-full php-fpm php7.2-cgi php7.2-cli php-geoip curl ffmpeg mediainfo unrar rar sox libsox-fmt-mp3 \

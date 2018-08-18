@@ -1,6 +1,6 @@
 FROM kalagxw/ubuntu-sshd
 
-RUN apt-get update  && apt-get install -y git build-essential automake libcppunit-dev libtool zlib1g-dev gawk libsigc++-2.0-dev libssl-dev libncurses5-dev libncursesw5-dev libcurl4-openssl-dev libxmlrpc-c++8-dev unzip \
+RUN apt-get update  && apt-get install -y git build-essential automake wget libcppunit-dev libtool zlib1g-dev gawk libsigc++-2.0-dev libssl-dev libncurses5-dev libncursesw5-dev libcurl4-openssl-dev libxmlrpc-c++8-dev unzip \
                    && git clone https://github.com/rakshasa/libtorrent && cd libtorrent/ \
                    && git config --global user.email "your@mail.com" && git config --global user.name "yourname" && git checkout v0.13.7 && git cherry-pick 7b29b6b \
                    && ./autogen.sh && ./configure --disable-debug && make -j$(nproc) \

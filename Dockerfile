@@ -39,7 +39,7 @@ RUN git clone https://github.com/kalagxw/rtorrent-docker.git a && cp ./a/rutorre
                    
 RUN ln -s /usr/share/nginx/sbin/nginx /usr/sbin/nginx && mkdir -p /var/lib/nginx/body && mkdir -p /run/php/ && touch /run/php/php7.2-fpm.pid
 RUN rm -rf /etc/nginx/sites-enabled/default \
-    && cd \ && rm -rf rtorrent-0.9.7 rtorrent-0.9.7.tar.gz a openssl-patch openssl ngx_brotli nginx-patch nginx-ct.zip nginx-ct-1.3.2 nginx-1.14.0.tar.gz nginx-1.14.0 libtorrent
+    && cd / && rm -rf rtorrent-0.9.7 rtorrent-0.9.7.tar.gz a openssl-patch openssl ngx_brotli nginx-patch nginx-ct.zip nginx-ct-1.3.2 nginx-1.14.0.tar.gz nginx-1.14.0 libtorrent
 
 EXPOSE 80
 

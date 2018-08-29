@@ -1,0 +1,96 @@
+{
+  "log" : {
+    "loglevel": "info"
+  },
+  "inbound": {
+    "port": 6666,
+    "protocol": "vmess",
+    "streamSettings": {
+      "network": "kcp"
+      },
+    "settings": {
+      "clients": [
+        {
+          "id": "5a6204bb-2a89-429f-833a-46b72cc21bd3",
+          "level": 1,
+          "alterId": 64,
+          "security": "aes-128-gcm"
+        }
+      ]
+    }
+  },
+  "inboundDetour": [
+  {
+   "port": 10000,
+    "listen":"127.0.0.1",
+    "protocol": "vmess",
+    "settings": {
+      "clients": [
+        {
+          "id": "67c3426e-5ec4-4297-ae19-1cf7ed7220d3",
+          "alterId": 64
+        }
+      ]
+    },
+    "streamSettings": {
+      "network": "ws",
+      "wsSettings": {
+      "path": "/ray"
+     }
+    }
+   }
+  ],
+  "outbound": {
+    "protocol": "freedom",
+    "settings": {}
+  },
+  "outboundDetour": [
+    {
+      "protocol": "blackhole",
+      "settings": {},
+      "tag": "blocked"
+    }
+  ],
+  "routing": {
+    "strategy": "rules",
+    "settings": {
+      "rules": [
+        {
+          "type": "field",
+          "ip": [
+            "0.0.0.0/8",
+            "10.0.0.0/8",
+            "100.64.0.0/10",
+            "127.0.0.0/8",
+            "169.254.0.0/16",
+            "172.16.0.0/12",
+            "192.0.0.0/24",
+            "192.0.2.0/24",
+            "192.168.0.0/16",
+            "::1/128",
+            "fc00::/7",
+            "fe80::/10"
+          ],
+          "outboundTag": "blocked"
+        }
+      ]
+    }
+  },
+  "transport": {
+   "tcpSettings": {
+    "connectionReuse": true
+  },
+    "kcpSettings": {
+    "mtu": 576,
+    "tti": 15,
+    "uplinkCapacity": 50,
+    "downlinkCapacity": 200,
+    "congestion": false,
+    "readBufferSize": 5,
+    "writeBufferSize": 5,
+    "header": {
+    "type": "none"
+     }
+   }
+ }
+}

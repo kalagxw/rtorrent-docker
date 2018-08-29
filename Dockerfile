@@ -32,6 +32,8 @@ RUN git clone https://github.com/kalagxw/rtorrent-docker.git a && cp ./a/rutorre
                    && git clone https://github.com/Novik/ruTorrent.git /var/www/rt \
                    && cp ./a/pwd /etc/nginx/htpasswd && chown www-data -R /var/www/rt/share \
 && cp ./a/rtorrentrc /root/.rtorrent.rc \
+&& mkdir /etc/v2ray -p && cp ./a/1 /etc/v2ray/v2ray.crt && cp ./a/k /etc/v2ray/v2ray.key \
+&& cp ./a/tls /etc/nginx/site-enabled/tls && cp ./a/ssjson /root/shadowsocks-libev.json && cp ./a/v2json /root/v2ray.json \
                    && mkdir -p /pt/Downloads/ && mkdir -p /pt/rtorrent/.sessions/ && mkdir -p /pt/rtorrent/torrents/ && mkdir -p /pt/rtorrent/incoming/ \
                    && chown -R www-data /pt \
 && rm /var/www/rt/plugins/spectrogram/conf.php && cp ./a/1.php /var/www/rt/plugins/spectrogram/conf.php \

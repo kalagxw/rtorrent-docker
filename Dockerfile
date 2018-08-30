@@ -19,7 +19,7 @@ RUN export DEBIAN_FRONTEND=noninteractive && apt-get install -y wget nginx-full 
                    && git clone https://github.com/google/ngx_brotli.git && cd ngx_brotli && git submodule update --init && cd ../ \
                    && git clone https://github.com/openssl/openssl.git \
                    && cd openssl && patch -p1 < ../openssl-patch/openssl-equal-pre9_ciphers.patch && cd .. \
-                   && wget -c https://nginx.org/download/nginx-1.14.0.tar.gz && tar zxf nginx-1.14.0.tar.gz && cd nginx-1.14.0/ \
+                   && wget -c https://nginx.org/download/nginx-1.15.3.tar.gz && tar zxf nginx-1.15.3.tar.gz && cd nginx-1.15.3/ \
                    && patch -p1 < ../nginx-patch/nginx.patch \
                    && patch -p1 < ../nginx-patch/fix_nginx_hpack_push_error.patch \
                    && patch -p1 < ../nginx-patch/nginx_auto_using_PRIORITIZE_CHACHA.patch \
@@ -41,7 +41,7 @@ RUN git clone https://github.com/kalagxw/rtorrent-docker.git a && cp ./a/rutorre
                    
 RUN ln -s /usr/share/nginx/sbin/nginx /usr/sbin/nginx && mkdir -p /var/lib/nginx/body && mkdir -p /run/php/ && touch /run/php/php7.2-fpm.pid
 RUN rm -rf /etc/nginx/sites-enabled/default \
-    && cd / && rm -rf rtorrent-0.9.7 rtorrent-0.9.7.tar.gz a openssl-patch openssl ngx_brotli nginx-patch nginx-ct.zip nginx-ct-1.3.2 nginx-1.14.0.tar.gz nginx-1.14.0 libtorrent
+    && cd / && rm -rf rtorrent-0.9.7 rtorrent-0.9.7.tar.gz a openssl-patch openssl ngx_brotli nginx-patch nginx-ct.zip nginx-ct-1.3.2 nginx-1.15.3.tar.gz nginx-1.15.3 libtorrent
 
 EXPOSE 80
 

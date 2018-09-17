@@ -6,15 +6,14 @@
     "port": 6666,
     "protocol": "vmess",
     "streamSettings": {
-      "network": "kcp"
+      "network": "mkcp"
       },
     "settings": {
       "clients": [
         {
           "id": "5a6204bb-2a89-429f-833a-46b72cc21bd3",
           "level": 1,
-          "alterId": 64,
-          "security": "aes-128-gcm"
+          "alterId": 64
         }
       ]
     }
@@ -81,13 +80,13 @@
     "connectionReuse": true
   },
     "kcpSettings": {
-    "mtu": 576,
-    "tti": 15,
-    "uplinkCapacity": 50,
-    "downlinkCapacity": 200,
-    "congestion": false,
-    "readBufferSize": 5,
-    "writeBufferSize": 5,
+    "mtu": 1350,
+    "tti": 20,
+    "uplinkCapacity": 5,
+    "downlinkCapacity": 100,
+    "congestion": true,
+    "readBufferSize": 1,
+    "writeBufferSize": 1,
     "header": {
     "type": "none"
      }

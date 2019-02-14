@@ -6,7 +6,15 @@ schedule = untied_directory,5,5,stop_untied=
 schedule = untied_directory,5,5,close_untied=
 schedule = untied_directory,5,5,remove_untied=
 schedule = tied_directory,5,5,start_tied=
-schedule = low_diskspace,10,30,close_low_diskspace=100M
+schedule = low_diskspace,10,30,close_low_diskspace=4096M
+
+network.receive_buffer.size = 4M
+network.send_buffer.size = 16M
+pieces.memory.max.set = 2048M
+network.max_open_sockets.set = 1024
+network.http.max_open.set = 128
+network.max_open_files.set = 1024
+pieces.preload.type.set = 1
 
 upload_rate = 0
 download_rate = 0

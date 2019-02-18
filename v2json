@@ -1,9 +1,9 @@
 {
-  "log" : {
+  "log": {
     "loglevel": "info"
   },
   "dns": {
-     "servers": [
+    "servers": [
     "8.8.4.4",
     "1.0.0.1",
     "localhost"

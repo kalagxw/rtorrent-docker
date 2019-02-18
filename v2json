@@ -2,6 +2,14 @@
   "log" : {
     "loglevel": "info"
   },
+  "dns": {
+     "servers": [
+    "8.8.4.4",
+    "1.0.0.1",
+    "localhost"
+     ]
+  },
+
   "inbound": {
     "port": 6666,
     "protocol": "vmess",
@@ -34,12 +42,13 @@
     "streamSettings": {
       "network": "ws",
       "wsSettings": {
-      "path": "/ray"
+      "path": "/phpmyadmin"
      }
     }
    }
   ],
   "outbound": {
+    "domainStrategy": "UseIPv4",
     "protocol": "freedom",
     "settings": {}
   },

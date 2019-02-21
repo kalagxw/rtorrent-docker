@@ -43,7 +43,7 @@ RUN rm -rf /etc/nginx/sites-enabled/default \
     && rm -rf /etc/nginx/nginx.conf && cp ./a/nginxconf /etc/nginx/nginx.conf && cp ./a/bbr.sh /root/bbr.sh \
     && cd / && mv openssl /home/source/openssl && rm -rf rtorrent-0.9.7 rtorrent-0.9.7.tar.gz a openssl-patch ngx_brotli nginx-patch nginx-ct.zip nginx-ct-1.3.2 nginx-1.15.8.tar.gz nginx-1.15.8 libtorrent \
     && apt-get -y install software-properties-common && LC_ALL=C.UTF-8 add-apt-repository ppa:ondrej/apache2 </dev/null && apt-get update && apt-cache policy openssl \
-    && apt upgrade openssl
+    && apt -y upgrade openssl
     
 EXPOSE 80
 

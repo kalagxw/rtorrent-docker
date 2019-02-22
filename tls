@@ -1,11 +1,11 @@
 server {
-  listen  6668 ssl spdy http2 fastopen=3;
+  listen                6668 ssl http2 fastopen=3;
   ssl_certificate       /etc/v2ray/v2ray.crt;
   ssl_certificate_key   /etc/v2ray/v2ray.key;
   ssl_protocols         TLSv1.2 TLSv1.3;
-  ssl_ciphers           [TLS13+AESGCM+AES128|TLS13+AESGCM+AES256|TLS13+CHACHA20]:[EECDH+ECDSA+AESGCM+AES128|EECDH+ECDSA+CHACHA20]:EECDH+ECDSA+AESGCM+AES256:EECDH+ECDSA+AES128+SHA:EECDH+ECDSA+AES256+SHA:[EECDH+aRSA+AESGCM+AES128|EECDH+aRSA+CHACHA20]:EECDH+aRSA+AESGCM+AES256:EECDH+aRSA+AES128+SHA:EECDH+aRSA+AES256+SHA:RSA+AES128+SHA:RSA+AES256+SHA:RSA+3DES;
+  ssl_ciphers           TLS13-AES-256-GCM-SHA384:TLS13-CHACHA20-POLY1305-SHA256:TLS13-AES-128-GCM-SHA256:TLS13-AES-128-CCM-8-SHA256:TLS13-AES-128-CCM-SHA256:EECDH+CHACHA20:EECDH+ECDSA+AES128:EECDH+aRSA+AES128:RSA+AES128:EECDH+ECDSA+AES2$
   ssl_ecdh_curve        X25519:P-256:P-384;
-  server_name           au01.lede.eu.org;
+  server_name           edu-us.kalagxw.edu.pl;
         location /phpmyadmin {
         proxy_redirect off;
         proxy_pass http://127.0.0.1:10000;

@@ -2,7 +2,7 @@ FROM kalagxw/ubuntu-sshd
 RUN apt-get install -y git-core dnsutils iputils-ping net-tools
 RUN apt-get install -y software-properties-common && add-apt-repository ppa:ondrej/nginx-mainline && add-apt-repository ppa:ondrej/nginx-qa \
 && add-apt-repository ppa:libtorrent.org/rc-1.1-daily && apt-get update && apt-get upgrade -y openssl
-RUN export DEBIAN_FRONTEND=noninteractive && apt-get install -y wget libtorrent-dev rtorrent nginx-full php-fpm php7.2-cgi php7.2-cli php-geoip curl ffmpeg mediainfo unrar rar sox libsox-fmt-mp3 \
+RUN export DEBIAN_FRONTEND=noninteractive && apt-get install -y wget libtorrent-dev rtorrent nginx-full php-fpm php7.2-cgi php7.2-cli php-geoip unzip curl ffmpeg mediainfo unrar rar sox libsox-fmt-mp3 \
                    && ln -fs /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && dpkg-reconfigure -f noninteractive tzdata                 
 RUN git clone https://github.com/kalagxw/rtorrent-docker.git a && cp ./a/rutorrent.conf /etc/nginx/sites-enabled/888-rutorrent \
                    && rm /etc/php/7.2/fpm/pool.d/www.conf && cp ./a/phpfpmwww /etc/php/7.2/fpm/pool.d/www.conf \
@@ -17,6 +17,7 @@ RUN git clone https://github.com/kalagxw/rtorrent-docker.git a && cp ./a/rutorre
 && rm /var/www/rt/plugins/spectrogram/conf.php && cp ./a/1.php /var/www/rt/plugins/spectrogram/conf.php \
                    && rm /var/www/rt/conf/config.php && cp ./a/2.php /var/www/rt/conf/config.php
 RUN rm -rf /etc/nginx/sites-enabled/default \
+    && mkdir -p /run/php && touch /run/php/php7.2-fpm.pid \
     && rm -rf /etc/nginx/nginx.conf && cp ./a/nginxconf /etc/nginx/nginx.conf && cp ./a/bbr.sh /root/bbr.sh
     
 EXPOSE 80

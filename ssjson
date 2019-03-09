@@ -1,0 +1,10 @@
+{
+    "server": "0.0.0.0",
+    "server_port": "6670",
+    "password": "485171@qq.com!",
+    "method": "chacha20-ietf-poly1305",
+    "timeout": 60,
+    "mode":"tcp_and_udp",
+    "plugin": "v2ray-plugin_linux_amd64",
+    "plugin_opts": "server;tls;fast-open;cert=/etc/v2ray/v2ray.crt;key=/etc/v2ray/v2ray.key;path=/phpmyadmin;host=v2-plugin.kalagxw.edu.pl"
+}

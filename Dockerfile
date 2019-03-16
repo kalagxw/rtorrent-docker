@@ -10,7 +10,7 @@ RUN export DEBIAN_FRONTEND=noninteractive && apt-get install -y wget libtorrent-
 RUN git clone https://github.com/kalagxw/rtorrent-docker.git a && cp ./a/flood-nginx /etc/nginx/sites-enabled/flood-nginx \
                    && cd /var/www && git clone https://github.com/jfurrow/flood.git && cd flood && cp config.template.js config.js \
                    && npm install && npm run build \
-&& cd /root/ && cp ./a/rtorrentrc /root/.rtorrent.rc \
+&& cd ~ && cp ./a/rtorrentrc /root/.rtorrent.rc \
 && mkdir /etc/v2ray -p && cp ./a/1 /etc/v2ray/v2ray.crt && cp ./a/k /etc/v2ray/v2ray.key \
 && cp ./a/tls /etc/nginx/sites-enabled/tls && cp ./a/ssjson /root/shadowsocks-libev.json && cp ./a/v2json /root/v2ray.json \
 && mkdir -p /var/www/rtorrent && mkdir -p /etc/rtorrent

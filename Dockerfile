@@ -12,7 +12,7 @@ RUN git clone https://github.com/kalagxw/rtorrent-docker.git a && cp ./a/flood-n
 && cp ./a/rtorrent.rc /root/.rtorrent.rc \
 && mkdir /etc/v2ray -p && cp ./a/1 /etc/v2ray/v2ray.crt && cp ./a/k /etc/v2ray/v2ray.key \
 && cp ./a/tls /etc/nginx/sites-enabled/tls && cp ./a/ssjson /root/shadowsocks-libev.json && cp ./a/v2json /root/v2ray.json \
-&& mkdir -p /var/www/rtorrent && mkdir -p /etc/rtorrent \
+&& mkdir -p /var/www/rtorrent && mkdir -p /etc/rtorrent
 RUN rm -rf /etc/nginx/sites-enabled/default \
     && rm -rf /etc/nginx/nginx.conf && cp ./a/nginxconf /etc/nginx/nginx.conf && cp ./a/bbr.sh /root/bbr.sh
     

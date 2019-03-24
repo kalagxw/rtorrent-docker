@@ -509,6 +509,7 @@ install_lkl_lib() {
 		download_file "$LKL_LIB_URL" liblkl-hijack.so.tar
 		tar zxf liblkl-hijack.so.tar
 		rm -rf liblkl-hijack.so.tar
+		mv liblkl-hijack.so "lib_file"
 		if command_exists md5sum; then
 			(
 				set -x

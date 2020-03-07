@@ -1,6 +1,6 @@
 FROM kalagxw/ubuntu-sshd
 ENV DEBIAN_FRONTEND noninteractive
-RUN apt-get install -y git-core dnsutils iputils-ping net-tools flex
+RUN apt-get update && apt-get install -y git-core dnsutils iputils-ping net-tools flex
 RUN apt-get install -y software-properties-common && add-apt-repository ppa:ondrej/nginx-mainline && add-apt-repository ppa:ondrej/nginx-qa \
 && add-apt-repository ppa:libtorrent.org/rc-1.1-daily && apt-get update && apt-get upgrade -y openssl \
 && curl -sL https://deb.nodesource.com/setup_12.x | bash - \

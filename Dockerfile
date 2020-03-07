@@ -2,7 +2,7 @@ FROM kalagxw/ubuntu-sshd
 ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update && apt-get install -y git-core dnsutils iputils-ping net-tools flex
 RUN apt-get install -y software-properties-common \
-&& add-apt-repository ppa:libtorrent.org/rc-1.2-daily && apt-get update \
+&& add-apt-repository ppa:libtorrent.org/1.2-daily && apt-get update \
 && curl -sL https://deb.nodesource.com/setup_12.x | bash - \
 && apt update && apt install nodejs -y && npm -g install npm
 RUN export DEBIAN_FRONTEND=noninteractive && apt-get install -y --fix-missing wget libtorrent-dev rtorrent nginx-common unzip tzdata mediainfo \

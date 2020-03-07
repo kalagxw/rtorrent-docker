@@ -1,11 +1,11 @@
 FROM kalagxw/ubuntu-sshd
 ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update && apt-get install -y git-core dnsutils iputils-ping net-tools flex
-RUN apt-get install -y software-properties-common && add-apt-repository ppa:ondrej/nginx-mainline && add-apt-repository ppa:ondrej/nginx-qa \
-&& add-apt-repository ppa:libtorrent.org/rc-1.1-daily && apt-get update && apt-get upgrade -y openssl \
+RUN apt-get install -y software-properties-common \
+&& add-apt-repository ppa:libtorrent.org/rc-1.1-daily && apt-get update \
 && curl -sL https://deb.nodesource.com/setup_12.x | bash - \
 && apt update && apt install nodejs -y && npm -g install npm
-RUN export DEBIAN_FRONTEND=noninteractive && apt-get install -y --fix-missing wget libtorrent-dev rtorrent nginx-extras unzip tzdata mediainfo \
+RUN export DEBIAN_FRONTEND=noninteractive && apt-get install -y --fix-missing wget libtorrent-dev rtorrent nginx-common unzip tzdata mediainfo \
                    && ln -fs /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && dpkg-reconfigure -f noninteractive tzdata
 RUN git clone git://git.kernel.org/pub/scm/network/iproute2/iproute2.git && cd iproute2 && make install                     
 RUN git clone https://github.com/kalagxw/rtorrent-docker.git a && cp ./a/flood-nginx /etc/nginx/sites-enabled/flood-nginx \
@@ -16,6 +16,6 @@ RUN git clone https://github.com/kalagxw/rtorrent-docker.git a && cp ./a/flood-n
                    && cd /var/www && git clone https://github.com/jfurrow/flood.git && cd flood && cp config.template.js config.js \
                    && npm install && npm run build
 RUN rm -rf /etc/nginx/sites-enabled/default \
-    && rm -rf /etc/nginx/nginx.conf && cp ./a/nginxconf /etc/nginx/nginx.conf && cp ./a/bbr.sh /root/bbr.sh
+    && rm -rf /etc/nginx/nginx.conf && cp ./a/nginxconf /etc/nginx/nginx.conf && cp ./a/bbr.sh /root/bbr.sh && rm -rf /a
     
 EXPOSE 80

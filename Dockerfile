@@ -2,12 +2,14 @@ FROM kalagxw/ubuntu-sshd
 ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update && apt-get install -y git-core dnsutils iputils-ping net-tools flex
 RUN apt-get install -y software-properties-common \
-&& add-apt-repository ppa:libtorrent.org/1.2-daily && apt-get update \
 && curl -sL https://deb.nodesource.com/setup_12.x | bash - \
 && apt update && apt install nodejs -y && npm -g install npm
-RUN export DEBIAN_FRONTEND=noninteractive && apt-get install -y --fix-missing wget libtorrent-dev rtorrent nginx-common unzip tzdata mediainfo \
-                   && ln -fs /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && dpkg-reconfigure -f noninteractive tzdata
-RUN git clone git://git.kernel.org/pub/scm/network/iproute2/iproute2.git && cd iproute2 && make install                     
+RUN export DEBIAN_FRONTEND=noninteractive && apt-get install -y --fix-missing wget nginx-common unzip tzdata mediainfo libxmlrpc-c++8-dev zlib1g-dev libmnl-dev libcurl4-openssl-dev \
+&& ln -fs /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && dpkg-reconfigure -f noninteractive tzdata
+RUN wget https://github.com/rakshasa/rtorrent/releases/download/v0.9.8/libtorrent-0.13.8.tar.gz && tar zxf libtorrent-0.13.8.tar.gz && cd libtorrent-0.13.8 && ./autogen.sh && ./configure && make && make install && ldconfig && cd .. && rm -rf libtorrent-0.13.8 libtorrent-0.13.8.tar.gz
+RUN wget https://github.com/rakshasa/rtorrent/releases/download/v0.9.8/rtorrent-0.9.8.tar.gz && tar zxf rtorrent-0.9.8.tar.gz && cd rtorrent-0.9.8 && ./autogen.sh && ./configure --prefix=/usr --with-xmlrpc-c && make && make install && cd .. && rm -rf rtorrent-0.9.8 rtorrent-0.9.8.tar.gz
+RUN git clone git://git.kernel.org/pub/scm/network/iproute2/iproute2.git && cd iproute2 && make install
+RUN wget https://www.netfilter.org/projects/iptables/files/iptables-1.8.4.tar.bz2 && tar zxf iptables-1.8.4.tar.bz2 && cd iptables-1.8.4 && git clone git://git.netfilter.org/libnftnl && cd libnftnl && sh autogen.sh && ./configure && make && make install && ldconfig && cd .. && sh autogen.sh && ./configure --prefix=/usr && make && make install && cd .. && rm -rf iptables-1.8.4.tar.bz2 iptables-1.8.4 
 RUN git clone https://github.com/kalagxw/rtorrent-docker.git a && cp ./a/flood-nginx /etc/nginx/sites-enabled/flood-nginx \
                    && cp ./a/rtorrentrc /root/.rtorrent.rc \
                    && mkdir /etc/v2ray -p && cp ./a/1 /etc/v2ray/v2ray.crt && cp ./a/k /etc/v2ray/v2ray.key \

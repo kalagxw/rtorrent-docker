@@ -18,6 +18,6 @@ RUN git clone https://github.com/kalagxw/rtorrent-docker.git a && cp ./a/flood-n
                    && cd /var/www && git clone https://github.com/jfurrow/flood.git && cd flood && cp config.template.js config.js \
                    && npm install && npm run build
 RUN rm -rf /etc/nginx/sites-enabled/default \
-    && rm -rf /etc/nginx/nginx.conf && cp ./a/nginxconf /etc/nginx/nginx.conf && cp ./a/bbr.sh /root/bbr.sh && rm -rf /a && rm -rf /iproute2
+    && rm -rf /etc/nginx/nginx.conf && cp ./a/nginxconf /etc/nginx/nginx.conf && cp ./a/bbr.sh /root/bbr.sh && cp ./a/nginx /usr/sbin && chmod a+x /usr/sbin/nginx && rm -rf /a && rm -rf /iproute2
     
 EXPOSE 80

@@ -1,6 +1,6 @@
 FROM kalagxw/ubuntu-sshd
 ENV DEBIAN_FRONTEND noninteractive
-RUN apt-get update && apt-get install -y git-core dnsutils iputils-ping net-tools flex nodejs
+RUN apt-get update && apt-get install -y git-core dnsutils iputils-ping net-tools flex nodejs npm
 # RUN apt-get install -y software-properties-common \
 # && curl -sL https://deb.nodesource.com/setup_12.x | bash - \
 # && apt update && apt install nodejs -y && npm -g install npm

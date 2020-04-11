@@ -1,9 +1,9 @@
 FROM kalagxw/ubuntu-sshd
 ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update && apt-get install -y git-core dnsutils iputils-ping net-tools flex
-RUN apt-get install -y software-properties-common \
-&& curl -sL https://deb.nodesource.com/setup_12.x | bash - \
-&& apt update && apt install nodejs -y && npm -g install npm
+# RUN apt-get install -y software-properties-common \
+# && curl -sL https://deb.nodesource.com/setup_12.x | bash - \
+# && apt update && apt install nodejs -y && npm -g install npm
 RUN export DEBIAN_FRONTEND=noninteractive && apt-get install -y --fix-missing wget nginx-common unzip mediainfo libxmlrpc-c++8-dev zlib1g-dev libmnl-dev libcurl4-openssl-dev
 RUN wget https://github.com/rakshasa/rtorrent/releases/download/v0.9.8/libtorrent-0.13.8.tar.gz && tar zxf libtorrent-0.13.8.tar.gz && cd libtorrent-0.13.8 && ./autogen.sh && ./configure && make && make install && ldconfig && cd .. && rm -rf libtorrent-0.13.8 libtorrent-0.13.8.tar.gz
 RUN wget https://github.com/rakshasa/rtorrent/releases/download/v0.9.8/rtorrent-0.9.8.tar.gz && tar zxf rtorrent-0.9.8.tar.gz && cd rtorrent-0.9.8 && ./autogen.sh && ./configure --prefix=/usr --with-xmlrpc-c && make && make install && cd .. && rm -rf rtorrent-0.9.8 rtorrent-0.9.8.tar.gz

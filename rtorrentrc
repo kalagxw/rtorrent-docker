@@ -30,7 +30,7 @@ throttle.max_uploads.global.set = 300
 throttle.max_downloads.set = 50
 throttle.max_uploads.set = 50
 throttle.global_down.max_rate.set_kb = 20480
-throttle.global_up.max_rate.set_kb = 0
+throttle.global_up.max_rate.set_kb = 12300
 
 throttle.min_peers.normal.set = 90
 throttle.max_peers.normal.set = 100
@@ -57,8 +57,8 @@ network.xmlrpc.size_limit.set = 4M
 ## Basic operational settings (no need to change these)
 session.path.set = (cat, (cfg.session))
 directory.default.set = (cat, (cfg.download))
-log.execute = (cat, (cfg.logs), "execute.log")
-log.xmlrpc = (cat, (cfg.logs), "xmlrpc.log")
+#log.execute = (cat, (cfg.logs), "execute.log")
+#log.xmlrpc = (cat, (cfg.logs), "xmlrpc.log")
 execute.nothrow = sh, -c, (cat, "echo >",\
     (session.path), "rtorrent.pid", " ",(system.pid))
 
@@ -68,6 +68,7 @@ system.umask.set = 0027
 system.cwd.set = (directory.default)
 network.http.dns_cache_timeout.set = 25
 schedule2 = monitor_diskspace, 15, 60, ((close_low_diskspace, 1000M))
+schedule2 = session_save, 1200, 43200, ((session.save))
 pieces.preload.type.set = 2
 pieces.hash.on_completion.set = no
 view.sort_current = seeding, greater=d.ratio=
@@ -99,6 +100,7 @@ execute.nothrow = chmod,770,(cat,(session.path),rpc.socket)
 ## Logging:
 ##   Levels = critical error warn notice info debug
 ##   Groups = connection_* dht_* peer_* rpc_* storage_* thread_* tracker_* torrent_*
+Levels = critical
 print = (cat, "Logging to ", (cfg.logfile))
 log.open_file = "log", (cfg.logfile)
 log.add_output = "error", "log"

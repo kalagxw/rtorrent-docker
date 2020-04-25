@@ -100,7 +100,6 @@ execute.nothrow = chmod,770,(cat,(session.path),rpc.socket)
 ## Logging:
 ##   Levels = critical error warn notice info debug
 ##   Groups = connection_* dht_* peer_* rpc_* storage_* thread_* tracker_* torrent_*
-Levels = critical
 print = (cat, "Logging to ", (cfg.logfile))
 log.open_file = "log", (cfg.logfile)
 log.add_output = "error", "log"
